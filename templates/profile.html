@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+<h1>Hello, {{ user.username }} !</h1>
+{% else %}
+<meta http-equiv="refresh" content="0; url={{ url_for('login') }}">
+{% endif %}
+
+{% endblock %}
