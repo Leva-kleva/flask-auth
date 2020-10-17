@@ -11,11 +11,36 @@
         {{ messages[0] }}
     {% endif %}
 {% endwith %}
-<form method="POST" action="/signup">
-    <input type="email" name="email" placeholder="Email">
-    <input type="text" name="name" placeholder="Name">
-    <input type="password" name="password" placeholder="Password">
-    <button>Sign Up</button>
+<form>
+    <input id="usetBox" type="email" name="email" placeholder="Email" autocomplete="off">
+    <input id="nameBox" type="text" name="username" placeholder="Name">
+    <input id="passBox" type="password" name="password" placeholder="Password" autocomplete="off">
+    <button id="btnSignUp" type="button">Sign Up</button>
 </form>
 
+<script>
+    $(function() {
+        $('#btnSignUp').click(function() {
+            var body = {
+                "email": $('#usetBox').val(),
+                "username": $('#nameBox').val(),
+                "password": $('#passBox').val()
+            };
+            $.ajax({
+                url: '/signup',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                data: JSON.stringify(body),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

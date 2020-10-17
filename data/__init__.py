@@ -5,6 +5,8 @@ import psycopg2
 import json
 import conf
 
+import data.query
+
 
 class Errors:
     unprocessable_entity = 0
@@ -29,3 +31,7 @@ def execute(*sql, array=True, to_json=True):
                     return cur.rowcount
     except psycopg2.OperationalError:
         return -2
+
+
+# def errors(ans, body, code):
+#     return body, code

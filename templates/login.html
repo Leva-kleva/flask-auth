@@ -14,10 +14,35 @@
 </div>
 {% endif %}
 {% endwith %}
-<form method="POST" action="/login">
-    <input type="email" name="email" placeholder="Your Email">
-    <input type="password" name="password" placeholder="Your Password">
-    <button >Login</button>
+
+<form>
+    <input id="usetBox" type="email" name="email" placeholder="Email" autocomplete="off">
+    <input id="passBox" type="password" name="password" placeholder="Password" autocomplete="off">
+    <button id="btnSignUp" type="button">Login</button>
 </form>
 
+<script>
+    $(function() {
+        $('#btnSignUp').click(function() {
+            var body = {
+                "email": $('#usetBox').val(),
+                "password": $('#passBox').val()
+            };
+            $.ajax({
+                url: '/login',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                data: JSON.stringify(body),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

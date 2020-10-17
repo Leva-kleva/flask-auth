@@ -1,0 +1,9 @@
+post = {
+    "type": "object",
+    "properties": {
+        "email": {"type": "string"},
+        "username": {"type": "string"},
+        "password": {"type": "string"}
+    },
+    "required": ["email", "username", "password"]
+}
